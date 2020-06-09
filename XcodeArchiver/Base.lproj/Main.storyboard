@@ -750,7 +750,7 @@
                                             <pathControl verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VAu-Sl-Jzw">
                                                 <rect key="frame" x="86" y="-4" width="180" height="22"/>
                                                 <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" placeholderString="~/Documents/ArchiveTemp" pathStyle="popUp" id="kRj-yQ-GCf">
-                                                    <font key="font" metaFont="menu" size="11"/>
+                                                    <font key="font" metaFont="controlContent" size="11"/>
                                                 </pathCell>
                                             </pathControl>
                                         </subviews>
@@ -802,10 +802,10 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <pathControl toolTip="The root folder that contains your iOS project. It should have an .xcodeproj file inside " verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jcN-l5-hud" userLabel="Project Location">
+                            <pathControl toolTip="需要打包的项目文件，文件后缀必须是xcodeproj 或xcworkspace " verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jcN-l5-hud" userLabel="Project Location">
                                 <rect key="frame" x="17" y="617" width="152" height="22"/>
                                 <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" placeholderString="选择或拖拽文件到此处" pathStyle="popUp" id="pKg-dM-K32">
-                                    <font key="font" metaFont="menu" size="11"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                     <allowedTypes>
                                         <string>xcodeproj</string>
                                         <string>xcworkspace</string>
@@ -823,10 +823,13 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <pathControl toolTip="The destination folder that you want your .ipa file to be built into" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tcw-VN-VZb" userLabel="Save Location">
+                            <pathControl toolTip="该文件夹用于存储打包和导出的文件" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tcw-VN-VZb" userLabel="Save Location">
                                 <rect key="frame" x="17" y="562" width="163" height="22"/>
                                 <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" placeholderString="选择或拖拽文件夹到此处" pathStyle="popUp" id="MXC-NB-m1J">
-                                    <font key="font" metaFont="menu" size="11"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
+                                    <allowedTypes>
+                                        <string>public.folder</string>
+                                    </allowedTypes>
                                 </pathCell>
                             </pathControl>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RWr-bY-B5E">
@@ -837,7 +840,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PJ3-6i-iDE">
+                            <popUpButton toolTip="编译计划 scheme" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PJ3-6i-iDE">
                                 <rect key="frame" x="18" y="504" width="38" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="zGi-x0-tpG" id="ksg-iJ-gaJ">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -883,7 +886,7 @@
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="1Fq-g8-y2s">
                                         <rect key="frame" x="0.0" y="65" width="226" height="50"/>
                                     </customView>
-                                    <button toolTip="Start archiving the object" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gpf-UJ-2mB">
+                                    <button toolTip="开始打包项目" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gpf-UJ-2mB">
                                         <rect key="frame" x="227" y="72" width="67" height="32"/>
                                         <buttonCell key="cell" type="push" title="打包" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GSU-09-22g">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -893,7 +896,7 @@
                                             <action selector="archiveAction:" target="qf5-Jg-Fby" id="WWn-PB-E9z"/>
                                         </connections>
                                     </button>
-                                    <button toolTip="Start exporting the object" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jL3-fR-87C" userLabel="Export Button">
+                                    <button toolTip="开始打包并导出项目文件" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jL3-fR-87C" userLabel="Export Button">
                                         <rect key="frame" x="289" y="72" width="67" height="32"/>
                                         <buttonCell key="cell" type="push" title="导出" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="e8f-wg-5U2">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -903,7 +906,7 @@
                                             <action selector="archive_exportAction:" target="qf5-Jg-Fby" id="iRI-q5-lG0"/>
                                         </connections>
                                     </button>
-                                    <button toolTip="Stop current task which is running" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pfB-g3-lJP" userLabel="Stop Button">
+                                    <button toolTip="停止当前正在进行的任务" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pfB-g3-lJP" userLabel="Stop Button">
                                         <rect key="frame" x="351" y="72" width="67" height="32"/>
                                         <buttonCell key="cell" type="push" title="停止" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Uma-hZ-f9e">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

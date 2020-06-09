@@ -31,8 +31,6 @@
 		D106D7132487A94200198531 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		D1E8C2CF248E3338008BDF1A /* DragDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDropView.swift; sourceTree = "<group>"; };
 		D1E8C2D3248F284F008BDF1A /* ArchiveHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveHistory.swift; sourceTree = "<group>"; };
-		D1E8C2D5248F2AAC008BDF1A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		D1E8C2D6248F2B53008BDF1A /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Main.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,8 +120,6 @@
 			knownRegions = (
 				en,
 				Base,
-				"zh-Hans",
-				"en-GB",
 			);
 			mainGroup = D106D6DD2484F7B900198531;
 			productRefGroup = D106D6E72484F7B900198531 /* Products */;
@@ -169,8 +165,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				D106D6F02484F7BD00198531 /* Base */,
-				D1E8C2D5248F2AAC008BDF1A /* zh-Hans */,
-				D1E8C2D6248F2B53008BDF1A /* en-GB */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -308,6 +302,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diaoshihao.XcodeArchiver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -329,6 +324,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diaoshihao.XcodeArchiver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

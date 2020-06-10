@@ -22,7 +22,7 @@ protocol ScriptRunner {
 extension ScriptRunner {
     
     @discardableResult
-    func runTask(arguments: [String], outputHandler: @escaping OutputHandler, terminationHandler: TerminationHandler?) -> Process {
+    func runTask(arguments: [String], outputHandler: OutputHandler?, terminationHandler: TerminationHandler?) -> Process {
         let task = Process()
         DispatchQueue.global(qos: .background).async {
             task.arguments = arguments
@@ -37,6 +37,7 @@ extension ScriptRunner {
     
     func captureStandardOutput(task: Process, handler: OutputHandler?) {
         let outputPipe = Pipe()
+        task.standardError = outputPipe
         task.standardOutput = outputPipe
         outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
         
@@ -44,9 +45,7 @@ extension ScriptRunner {
             let output = outputPipe.fileHandleForReading.availableData
             let outputString = String(data: output, encoding: String.Encoding.utf8) ?? ""
             if output.count > 0 {
-                DispatchQueue.main.async {
-                    handler?(output, outputString, try? JSONSerialization.jsonObject(with: output, options: .allowFragments) as? [String : Any])
-                }
+                handler?(output, outputString, try? JSONSerialization.jsonObject(with: output, options: .allowFragments) as? [String : Any])
             }
             outputPipe.fileHandleForReading.waitForDataInBackgroundAndNotify()
         }
@@ -91,11 +90,14 @@ struct ArchiveItem {
 
 protocol XcodeBuildScript: ScriptRunner {
     var exportOptionsPath: String? { get }
+    var exportMethod: ExportMethod? { get }
 }
 
 extension XcodeBuildScript {
     var launchPath: String { "/usr/bin/xcodebuild" }
-    var exportOptionsPath: String? { Bundle.main.path(forResource: "ExportOptions", ofType: "plist") }
+    var exportOptionsPath: String? {
+        exportMethod?.exportOptionsPath
+    }
 }
 
 extension XcodeBuildScript {
@@ -107,11 +109,15 @@ extension XcodeBuildScript {
         }, terminationHandler: nil)
     }
     
-    func archiveItem(_ item: ArchiveItem, outputHandler: @escaping OutputHandler, terminationHandler: TerminationHandler?) -> Process {
+    func cleanItem(_ item: ArchiveItem, outputHandler: OutputHandler?, terminationHandler: TerminationHandler?) {
+        runTask(arguments: ["clean", item.type.hyphenString, item.projectPath, "-scheme", item.schemeName], outputHandler: outputHandler, terminationHandler: terminationHandler)
+    }
+    
+    func archiveItem(_ item: ArchiveItem, outputHandler: OutputHandler?, terminationHandler: TerminationHandler?) -> Process {
         return runTask(arguments: ["archive", item.type.hyphenString, item.projectPath, "-scheme", item.schemeName, "-archivePath", item.archivePath], outputHandler: outputHandler, terminationHandler: terminationHandler)
     }
     
-    func exportItem(_ item: ArchiveItem, outputHandler: @escaping OutputHandler, terminationHandler: TerminationHandler?) -> Process {
+    func exportItem(_ item: ArchiveItem, outputHandler: OutputHandler?, terminationHandler: TerminationHandler?) -> Process {
         return runTask(arguments: ["-exportArchive", "-archivePath", item.archivePath, "-exportPath", item.exportPath, "-exportOptionsPlist", exportOptionsPath ?? ""], outputHandler: outputHandler, terminationHandler: terminationHandler)
     }
 }

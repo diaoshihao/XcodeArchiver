@@ -709,7 +709,7 @@
         <scene sceneID="upO-Hn-QS9">
             <objects>
                 <windowController id="KYq-c5-2VR" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="23P-sy-WsT">
+                    <window key="window" title="通用" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="23P-sy-WsT">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
@@ -725,62 +725,50 @@
             </objects>
             <point key="canvasLocation" x="75" y="653"/>
         </scene>
-        <!--Preferences-->
+        <!--Preferences View Controller-->
         <scene sceneID="WcW-xN-M8Q">
             <objects>
                 <customObject id="yzg-lG-1qV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController id="A18-Tb-ppk" customClass="Preferences" customModule="XcodeArchiver" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="A18-Tb-ppk" customClass="PreferencesViewController" customModule="XcodeArchiver" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="mm6-1B-0OT">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="550"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZQg-5h-q6G">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="550"/>
-                                <subviews>
-                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYz-CW-ld3">
-                                        <rect key="frame" x="109" y="267" width="263" height="17"/>
-                                        <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EX9-iF-w9y">
-                                                <rect key="frame" x="-2" y="0.0" width="85" height="16"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="临时文件夹：" id="C27-9K-Y4o">
-                                                    <font key="font" usesAppearanceFont="YES"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                            <pathControl verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VAu-Sl-Jzw">
-                                                <rect key="frame" x="86" y="-4" width="180" height="22"/>
-                                                <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" placeholderString="~/Documents/ArchiveTemp" pathStyle="popUp" id="kRj-yQ-GCf">
-                                                    <font key="font" metaFont="controlContent" size="11"/>
-                                                </pathCell>
-                                            </pathControl>
-                                        </subviews>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UHX-Jr-3zw">
+                                <rect key="frame" x="142" y="147" width="41" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="打包：" id="GTB-MX-oI2">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GAk-p4-W3u">
+                                <rect key="frame" x="187" y="148" width="55" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="clean" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="E79-cb-yML">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cleanFirstAciont:" target="A18-Tb-ppk" id="16L-i6-EPE"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lDd-ni-YsP">
+                                <rect key="frame" x="187" y="122" width="115" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="记住上一个项目" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="hwz-65-MdH">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="rememberLastAction:" target="A18-Tb-ppk" id="rt3-LS-CZt"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="ZQg-5h-q6G" secondAttribute="bottom" id="0eT-iJ-wsO"/>
-                            <constraint firstItem="ZQg-5h-q6G" firstAttribute="leading" secondItem="mm6-1B-0OT" secondAttribute="leading" id="HSS-f8-OUv"/>
-                            <constraint firstAttribute="trailing" secondItem="ZQg-5h-q6G" secondAttribute="trailing" id="R5d-la-DcJ"/>
-                            <constraint firstItem="ZQg-5h-q6G" firstAttribute="top" secondItem="mm6-1B-0OT" secondAttribute="top" id="fid-f0-yl3"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="tempPath" destination="VAu-Sl-Jzw" id="wXj-iq-TAw"/>
+                        <outlet property="cleanFirst" destination="GAk-p4-W3u" id="mCD-mg-y5f"/>
                     </connections>
                 </viewController>
             </objects>
@@ -797,7 +785,7 @@
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hYd-UU-tDQ">
                                 <rect key="frame" x="18" y="650" width="203" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="打包对象(*.xcodeproj / *.xcworkspace)" id="4uA-Wy-L4m">
-                                    <font key="font" size="11" name=".PingFangSC-Regular"/>
+                                    <font key="font" metaFont="menu" size="11"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -805,7 +793,7 @@
                             <pathControl toolTip="需要打包的项目文件，文件后缀必须是xcodeproj 或xcworkspace " verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jcN-l5-hud" userLabel="Project Location">
                                 <rect key="frame" x="17" y="617" width="152" height="22"/>
                                 <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" placeholderString="选择或拖拽文件到此处" pathStyle="popUp" id="pKg-dM-K32">
-                                    <font key="font" metaFont="controlContent" size="11"/>
+                                    <font key="font" metaFont="menu" size="11"/>
                                     <allowedTypes>
                                         <string>xcodeproj</string>
                                         <string>xcworkspace</string>
@@ -818,7 +806,7 @@
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qmH-Ri-kRV">
                                 <rect key="frame" x="18" y="595" width="334" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="存储位置(该文件夹下将会产生 ./Archived/ 和 ./Exported/ 文件夹)" id="EuU-iQ-Y1E">
-                                    <font key="font" size="11" name=".PingFangSC-Regular"/>
+                                    <font key="font" metaFont="menu" size="11"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -826,7 +814,7 @@
                             <pathControl toolTip="该文件夹用于存储打包和导出的文件" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tcw-VN-VZb" userLabel="Save Location">
                                 <rect key="frame" x="17" y="562" width="163" height="22"/>
                                 <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" placeholderString="选择或拖拽文件夹到此处" pathStyle="popUp" id="MXC-NB-m1J">
-                                    <font key="font" metaFont="controlContent" size="11"/>
+                                    <font key="font" metaFont="menu" size="11"/>
                                     <allowedTypes>
                                         <string>public.folder</string>
                                     </allowedTypes>
@@ -835,7 +823,7 @@
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RWr-bY-B5E">
                                 <rect key="frame" x="18" y="540" width="261" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="选择scheme(选择打包对象后将自动加载schemes)" id="Sfc-U2-oYy">
-                                    <font key="font" size="11" name=".PingFangSC-Regular"/>
+                                    <font key="font" metaFont="menu" size="11"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

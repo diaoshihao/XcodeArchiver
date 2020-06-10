@@ -39,10 +39,9 @@ class TasksViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        schemeNameButton.removeAllItems()
-        schemeNameButton.addItem(withTitle: "请选择打包对象")
+        
+        loadHistoryItem()
     }
-    
 }
 
 //==============================================================
@@ -73,9 +72,20 @@ extension TasksViewController {
         guard let item = validateArchiveItem() else {
             return
         }
+        setText("")
         didBeginArchive()
-        beginArchiveItem(with: item) { (task) in
-            self.didFinishTask()
+        cacheHistory(with: item)
+        if !preferences.cleanFirst {
+            beginArchiveItem(with: item) { (task) in
+                self.didFinishTask()
+            }
+            return
+        }
+        
+        beginCleanItem(with: item) { (task) in
+            self.beginArchiveItem(with: item) { (task) in
+                self.didFinishTask()
+            }
         }
     }
     
@@ -83,11 +93,26 @@ extension TasksViewController {
         guard let item = validateArchiveItem() else {
             return
         }
+        setText("")
         didBeginArchive()
-        beginArchiveItem(with: item) { (task) in
-            if task.terminationStatus == 0 {
-                self.beginExportItem(with: item) { (_) in
-                    self.didFinishTask()
+        cacheHistory(with: item)
+        if !preferences.cleanFirst {
+            beginArchiveItem(with: item) { (task) in
+                if task.terminationStatus == 0 {
+                    self.beginExportItem(with: item) { (_) in
+                        self.didFinishTask()
+                    }
+                }
+            }
+            return
+        }
+        
+        beginCleanItem(with: item) { (task) in
+            self.beginArchiveItem(with: item) { (task) in
+                if task.terminationStatus == 0 {
+                    self.beginExportItem(with: item) { (_) in
+                        self.didFinishTask()
+                    }
                 }
             }
         }
@@ -95,8 +120,8 @@ extension TasksViewController {
     
     @IBAction func stopTask(_ sender:AnyObject) {
         if let task = currentTask, task.isRunning {
-            currentTask?.interrupt()
-            self.appendText("已停止运行")
+            currentTask?.terminate()
+            self.appendText("用户取消任务")
         }
         didFinishTask()
     }
@@ -107,24 +132,30 @@ extension TasksViewController {
 //==============================================================
 
 extension TasksViewController: XcodeBuildScript {
+    var exportMethod: ExportMethod? {
+        .development
+    }
+    
+    func beginCleanItem(with item: ArchiveItem, terminationHandler: TerminationHandler?) {
+        setText("开始清理 Build 文件夹")
+        cleanItem(item, outputHandler: { (_, text, _) in
+            self.appendText(text)
+        }, terminationHandler: terminationHandler)
+    }
     
     func beginArchiveItem(with item: ArchiveItem, terminationHandler: TerminationHandler?) {
-        setText("开始执行打包...")
-        currentTask = archiveItem(item, outputHandler: { (_, text, _) in
+        self.appendText("开始执行打包...")
+        self.currentTask = self.archiveItem(item, outputHandler: { (_, text, _) in
             self.appendText(text)
         }) { (task) in
             if task.terminationStatus == 0 {
                 self.appendText("打包已完成，包文件路径：\(item.archivePath)")
             } else {
-                switch task.terminationReason {
-                case .exit: self.appendText("打包失败：用户停止")
-                case .uncaughtSignal: self.appendText("打包失败：出现错误")
-                default: self.appendText("打包失败")
-                }
+                self.appendText("打包失败")
+                self.didFinishTask()
             }
             terminationHandler?(task)
         }
-        
     }
     
     func beginExportItem(with item: ArchiveItem, terminationHandler: TerminationHandler?) {
@@ -135,11 +166,7 @@ extension TasksViewController: XcodeBuildScript {
             if task.terminationStatus == 0 {
                 self.appendText("导出已完成，导出文件路径：\(item.exportPath)")
             } else {
-                switch task.terminationReason {
-                case .exit: self.appendText("导出失败：用户停止")
-                case .uncaughtSignal: self.appendText("导出失败：出现错误")
-                default: self.appendText("导出失败")
-                }
+                self.appendText("导出失败")
             }
             terminationHandler?(task)
         }
@@ -208,8 +235,10 @@ extension TasksViewController {
     
     func appendText(_ text: String) {
         DispatchQueue.main.async {
-            self.outputText.string = self.outputText.string + "\n" + text
-            let range = NSRange(location:self.outputText.string.count, length:0)
+            let preText = self.outputText.string
+            let currentText = preText + "\n" + text
+            self.outputText.string = currentText
+            let range = NSRange(location:currentText.count, length:0)
             self.outputText.scrollRangeToVisible(range)
         }
     }
@@ -221,4 +250,22 @@ extension TasksViewController {
 
 extension TasksViewController {
     
+    func loadHistoryItem() {
+        schemeNameButton.removeAllItems()
+        
+        guard let historyItem = history.first else {
+            schemeNameButton.addItem(withTitle: "请选择打包对象")
+            return
+        }
+        
+        schemeNameButton.addItems(withTitles: historyItem.schemes)
+        schemeNameButton.selectItem(withTitle: historyItem.selectedScheme)
+        objectPathControl.url = URL(fileURLWithPath: historyItem.projectPath)
+        savePathControl.url = URL(fileURLWithPath: historyItem.archiveLocation, isDirectory: true)
+    }
+    
+    func cacheHistory(with item: ArchiveItem) {
+        let history = ArchiveHistory(projectPath: item.projectPath, archiveLocation: item.archiveLocation, schemes: schemeNameButton.itemTitles, selectedScheme: schemeNameButton.title)
+        history.writeToCache()
+    }
 }

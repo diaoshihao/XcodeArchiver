@@ -11,11 +11,13 @@
 		D106D6EE2484F7BD00198531 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D106D6ED2484F7BD00198531 /* Assets.xcassets */; };
 		D106D6F12484F7BD00198531 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D106D6EF2484F7BD00198531 /* Main.storyboard */; };
 		D106D7002485DB1500198531 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D106D6FF2485DB1400198531 /* TasksViewController.swift */; };
-		D106D707248641FA00198531 /* ExportOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = D106D706248641F900198531 /* ExportOptions.plist */; };
 		D106D71024874FB300198531 /* ScriptRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D106D70E248748A700198531 /* ScriptRunner.swift */; };
-		D106D7142487A94200198531 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = D106D7132487A94200198531 /* Preferences.swift */; };
+		D106D7142487A94200198531 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D106D7132487A94200198531 /* PreferencesViewController.swift */; };
 		D1E8C2D0248E3338008BDF1A /* DragDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8C2CF248E3338008BDF1A /* DragDropView.swift */; };
 		D1E8C2D4248F284F008BDF1A /* ArchiveHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8C2D3248F284F008BDF1A /* ArchiveHistory.swift */; };
+		D1E8C2D8248F8692008BDF1A /* ExportOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8C2D7248F8692008BDF1A /* ExportOptions.swift */; };
+		D1E8C2DA2490C08B008BDF1A /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8C2D92490C08B008BDF1A /* Constant.swift */; };
+		D1E8C2DC2490C65D008BDF1A /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8C2DB2490C65D008BDF1A /* FileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,11 +28,13 @@
 		D106D6F22484F7BD00198531 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D106D6FF2485DB1400198531 /* TasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		D106D7042485F0E200198531 /* XcodeArchiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XcodeArchiver.entitlements; sourceTree = "<group>"; };
-		D106D706248641F900198531 /* ExportOptions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ExportOptions.plist; sourceTree = "<group>"; };
 		D106D70E248748A700198531 /* ScriptRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptRunner.swift; sourceTree = "<group>"; };
-		D106D7132487A94200198531 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		D106D7132487A94200198531 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		D1E8C2CF248E3338008BDF1A /* DragDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDropView.swift; sourceTree = "<group>"; };
 		D1E8C2D3248F284F008BDF1A /* ArchiveHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveHistory.swift; sourceTree = "<group>"; };
+		D1E8C2D7248F8692008BDF1A /* ExportOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportOptions.swift; sourceTree = "<group>"; };
+		D1E8C2D92490C08B008BDF1A /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		D1E8C2DB2490C65D008BDF1A /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,13 +67,15 @@
 		D106D6E82484F7B900198531 /* XcodeArchiver */ = {
 			isa = PBXGroup;
 			children = (
+				D1E8C2D92490C08B008BDF1A /* Constant.swift */,
+				D1E8C2DB2490C65D008BDF1A /* FileManager.swift */,
 				D106D6E92484F7B900198531 /* AppDelegate.swift */,
-				D106D7132487A94200198531 /* Preferences.swift */,
 				D1E8C2CF248E3338008BDF1A /* DragDropView.swift */,
 				D1E8C2D3248F284F008BDF1A /* ArchiveHistory.swift */,
+				D1E8C2D7248F8692008BDF1A /* ExportOptions.swift */,
 				D106D6FF2485DB1400198531 /* TasksViewController.swift */,
+				D106D7132487A94200198531 /* PreferencesViewController.swift */,
 				D106D70E248748A700198531 /* ScriptRunner.swift */,
-				D106D706248641F900198531 /* ExportOptions.plist */,
 				D106D6ED2484F7BD00198531 /* Assets.xcassets */,
 				D106D6EF2484F7BD00198531 /* Main.storyboard */,
 				D106D6F22484F7BD00198531 /* Info.plist */,
@@ -138,7 +144,6 @@
 			files = (
 				D106D6EE2484F7BD00198531 /* Assets.xcassets in Resources */,
 				D106D6F12484F7BD00198531 /* Main.storyboard in Resources */,
-				D106D707248641FA00198531 /* ExportOptions.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,9 +156,12 @@
 			files = (
 				D106D71024874FB300198531 /* ScriptRunner.swift in Sources */,
 				D1E8C2D0248E3338008BDF1A /* DragDropView.swift in Sources */,
+				D1E8C2D8248F8692008BDF1A /* ExportOptions.swift in Sources */,
+				D1E8C2DA2490C08B008BDF1A /* Constant.swift in Sources */,
 				D106D6EA2484F7B900198531 /* AppDelegate.swift in Sources */,
 				D1E8C2D4248F284F008BDF1A /* ArchiveHistory.swift in Sources */,
-				D106D7142487A94200198531 /* Preferences.swift in Sources */,
+				D1E8C2DC2490C65D008BDF1A /* FileManager.swift in Sources */,
+				D106D7142487A94200198531 /* PreferencesViewController.swift in Sources */,
 				D106D7002485DB1500198531 /* TasksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
